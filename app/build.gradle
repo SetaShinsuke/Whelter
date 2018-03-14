@@ -58,4 +58,6 @@ dependencies {
     //log
     compile 'log4j:log4j:1.2.17'
     compile 'de.mindpipe.android:android-logging-log4j:1.0.2'
+    //微博
+    compile 'com.sina.weibo.sdk:core:4.2.7:openDefaultRelease@aar'
 }
