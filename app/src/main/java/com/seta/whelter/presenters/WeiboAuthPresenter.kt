@@ -3,8 +3,8 @@ package com.seta.whelter.presenters
 import android.app.Activity
 import com.seta.common.extensions.logD
 import com.seta.common.mvp.BasePresenter
-import com.seta.whelter.Weibo
 import com.seta.whelter.mvpViews.WeiboAuthMvpView
+import com.seta.whelter.utils.Weibo
 import com.sina.weibo.sdk.WbSdk
 import com.sina.weibo.sdk.auth.*
 import com.sina.weibo.sdk.auth.sso.SsoHandler
@@ -27,7 +27,11 @@ class WeiboAuthPresenter : BasePresenter<WeiboAuthMvpView>() {
                 AccessTokenKeeper.writeAccessToken(context, oauth2AccessToken)
                 val token = oauth2AccessToken?.getToken()
                 val uid = oauth2AccessToken?.getUid()
-                mvpView?.onAuthSuccess()
+                token?.let {
+                    mvpView?.onAuthSuccess(token)
+                    return
+                }
+                mvpView?.onAuthFail(Exception("Auth token null!"))
             }
 
             override fun onFailure(p0: WbConnectErrorMessage?) {
