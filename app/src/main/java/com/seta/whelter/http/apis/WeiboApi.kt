@@ -16,8 +16,9 @@ interface WeiboApi {
      * @param feature 过滤类型ID，0：全部、1：原创、2：图片、3：视频、4：音乐，默认为0。
      * @param trim_user 返回值中user字段开关，0：返回完整user字段、1：user字段仅返回user_id，默认为0
      */
-    @GET("/2/statuses/home_timeline.json")
+    @GET("/2/statuses/user_timeline.json")
     fun getTimeLine(@Query("access_token") token: String
+                    , @Query("uid") uid: String
                     , @Query("page") page: Int
                     , @Query("count") count: Int
                     , @Query("since_id") sinceId: Int = 0

@@ -15,7 +15,8 @@ import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), WeiboAuthMvpView, WeiboTimelineMvpView {
 
-    private var mWBToken by DelegateExt.preference(this, Constants.WEIBO, "")
+    private var mWBToken by DelegateExt.preference(this, Constants.WEIBO_TOKEN, "")
+    private var mWBUid by DelegateExt.preference(this, Constants.WEIBO_UID, "")
     val mAuthPresenter = WeiboAuthPresenter()
     val mTimelinePresenter = WeiboTimelinePresenter()
 
@@ -35,7 +36,11 @@ class MainActivity : AppCompatActivity(), WeiboAuthMvpView, WeiboTimelineMvpView
     fun onClick(view: View) {
         when (view.id) {
             R.id.mBtnGoAuth -> {
-                mAuthPresenter.goAuth(this)
+                if (mWBToken.isNotBlank()) {
+                    mTimelinePresenter.loadWeiboTimeline(mWBToken, mWBUid)
+                } else {
+                    mAuthPresenter.goAuth(this)
+                }
             }
         }
     }
@@ -48,11 +53,12 @@ class MainActivity : AppCompatActivity(), WeiboAuthMvpView, WeiboTimelineMvpView
         logD("微博加载失败")
     }
 
-    override fun onAuthSuccess(token: String) {
+    override fun onAuthSuccess(token: String, uid: String) {
         this.mWBToken = token
+        this.mWBUid = uid
         logD("On Auth success: $token")
         toast("授权成功")
-        mTimelinePresenter.loadWeiboTimeline(token)
+        mTimelinePresenter.loadWeiboTimeline(token, uid)
     }
 
     override fun onAuthFail(t: Throwable) {

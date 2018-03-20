@@ -25,10 +25,10 @@ class WeiboAuthPresenter : BasePresenter<WeiboAuthMvpView>() {
             override fun onSuccess(oauth2AccessToken: Oauth2AccessToken?) {
                 logD("authorize success : " + oauth2AccessToken)
                 AccessTokenKeeper.writeAccessToken(context, oauth2AccessToken)
-                val token = oauth2AccessToken?.getToken()
-                val uid = oauth2AccessToken?.getUid()
-                token?.let {
-                    mvpView?.onAuthSuccess(token)
+                val token = oauth2AccessToken?.token
+                val uid = oauth2AccessToken?.uid
+                if (token != null && uid != null) {
+                    mvpView?.onAuthSuccess(token, uid)
                     return
                 }
                 mvpView?.onAuthFail(Exception("Auth token null!"))

@@ -17,8 +17,8 @@ class WeiboTimelinePresenter : BasePresenter<WeiboTimelineMvpView>() {
     }
 
 
-    fun loadWeiboTimeline(token: String, page: Int = 1) {
-        Network.weiboApi.getTimeLine(token, page, LIMIT)
+    fun loadWeiboTimeline(token: String, uid: String, page: Int = 1) {
+        Network.weiboApi.getTimeLine(token, uid, page, LIMIT)
                 .map { it.statuses }
                 .doSubscribe(object : Subscriber<List<TimelineBean>>() {
                     override fun onCompleted() {
