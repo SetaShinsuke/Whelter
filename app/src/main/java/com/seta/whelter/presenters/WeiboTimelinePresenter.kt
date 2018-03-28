@@ -13,7 +13,7 @@ import rx.Subscriber
  */
 class WeiboTimelinePresenter : BasePresenter<WeiboTimelineMvpView>() {
     companion object {
-        val LIMIT = 5
+        val LIMIT = 10
     }
 
 
@@ -25,11 +25,13 @@ class WeiboTimelinePresenter : BasePresenter<WeiboTimelineMvpView>() {
                     }
 
                     override fun onNext(t: List<TimelineBean>) {
-                        logD("load Weibo timeline onNext: $t")
+                        logD("load Weibo timeline onNext: $t, size: " + t.size)
+                        mvpView?.onTimelineLoaded(t)
                     }
 
-                    override fun onError(e: Throwable?) {
-                        logW("load Weibo error: ${e?.message}")
+                    override fun onError(e: Throwable) {
+                        logW("load Weibo error: ${e.message}")
+                        mvpView?.onTimelineLoadFail(e)
                     }
 
                 })

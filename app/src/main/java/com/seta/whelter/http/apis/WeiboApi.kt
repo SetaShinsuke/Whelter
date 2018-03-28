@@ -1,5 +1,6 @@
 package com.seta.whelter.http.apis
 
+import com.seta.whelter.http.RateLimitPojo
 import com.seta.whelter.http.TimelinePojo
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -25,4 +26,10 @@ interface WeiboApi {
                     , @Query("max_id") max_id: Int = 0
                     , @Query("feature") feature: Int = 0
                     , @Query("trim_user") trim_user: Int = 0): Observable<TimelinePojo>
+
+//    http://api.t.sina.com.cn/statuses/user_timeline.(json%7cxml)
+//    @GET("/")
+
+    @GET("/2/account/rate_limit_status")
+    fun getRateLimit(@Query("access_token") token: String): Observable<RateLimitPojo>
 }

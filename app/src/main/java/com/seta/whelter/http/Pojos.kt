@@ -5,7 +5,7 @@ package com.seta.whelter.http
  */
 data class TimelinePojo(val statuses: List<TimelineBean>)
 
-data class TimelineBean(val id: Int, val mid: Int, val idstr: String, val text: String, val source: String, val favorited: Boolean,
+data class TimelineBean(val id: String, val mid: String, val idstr: String, val text: String, val source: String, val favorited: Boolean,
                         val in_reply_to_status_id: String, val in_reply_to_user_id: String, val in_reply_to_screen_name: String,
                         val thumbnail_pic: String? = null,
                         val bmiddle_pic: String? = null,
@@ -14,13 +14,13 @@ data class TimelineBean(val id: Int, val mid: Int, val idstr: String, val text: 
                         val user: UserBean? = null,
                         val retweeted_status: TimelineBean? = null,
                         val reposts_count: Int, val comments_count: Int, val attitudes_count: Int,
-                        val pic_urls: List<thumbBean> = listOf(),
+                        val pic_urls: List<ThumbBean> = listOf(),
                         val gif_ids: String? = null
 //                        val visible:??,
 //                        val pic_ids:??
 )
 
-data class thumbBean(val thumbnail_pic: String)
+data class ThumbBean(val thumbnail_pic: String)
 
 //地理信息
 data class GeoBean(val province: String)
@@ -40,9 +40,12 @@ data class UserBean(val id: String,
                     val friends_count: Int,
                     val statuses_count: Int,
                     val favourites_count: Int,
-                    val created_at: Int,
+                    val created_at: String,
                     val following: Boolean,
                     val avatar_large: String,
                     val avatar_hd: String,
                     val bi_followers_count: Int //互粉数
 )
+
+data class RateLimitPojo(val ip_limit: Int, val limit_time_unit: String, val remaining_ip_hits: Int, val remaining_user_hits: Int, val reset_time: String, val reset_time_in_seconds: Int, val user_limit: Int, val api_rate_limits: List<ApiLimitBean>)
+data class ApiLimitBean(val api: String, val limit: Int, val limit_time_unit: String, val remaining_hits: Int)
