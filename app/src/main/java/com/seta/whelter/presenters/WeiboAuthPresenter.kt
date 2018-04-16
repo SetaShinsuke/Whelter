@@ -16,7 +16,7 @@ import kotlin.properties.Delegates
 class WeiboAuthPresenter : BasePresenter<WeiboAuthMvpView>() {
     private var mSsoHandler by Delegates.notNull<SsoHandler>()
 
-    fun goAuth(activity: Activity) {
+    fun  goAuth(activity: Activity) {
         val authInfo = AuthInfo(activity, Weibo.APP_KEY, Weibo.REDIRECT_URL, Weibo.SCOPE)
         WbSdk.install(activity, authInfo)
         val context = activity.applicationContext

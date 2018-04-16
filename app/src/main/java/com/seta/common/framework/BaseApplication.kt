@@ -10,6 +10,7 @@ class BaseApplication : Application() {
 
     companion object {
         var instance: BaseApplication by DelegateExt.notNullSingleValue() //非空、懒加载
+
     }
 
     override fun onCreate() {

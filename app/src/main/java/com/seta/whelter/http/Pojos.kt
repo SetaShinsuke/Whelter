@@ -5,8 +5,15 @@ package com.seta.whelter.http
  */
 data class TimelinePojo(val statuses: List<TimelineBean>)
 
-data class TimelineBean(val id: String, val mid: String, val idstr: String, val text: String, val source: String, val favorited: Boolean,
-                        val in_reply_to_status_id: String, val in_reply_to_user_id: String, val in_reply_to_screen_name: String,
+data class TimelineBean(val id: String,
+                        val mid: String,
+                        val idstr: String,
+                        val text: String,
+                        val source: String,
+                        val favorited: Boolean,
+                        val in_reply_to_status_id: String,
+                        val in_reply_to_user_id: String,
+                        val in_reply_to_screen_name: String,
                         val thumbnail_pic: String? = null,
                         val bmiddle_pic: String? = null,
                         val original_pic: String? = null,
