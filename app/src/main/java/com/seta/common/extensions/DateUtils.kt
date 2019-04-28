@@ -1,4 +1,4 @@
-package com.seta.setall.common.extensions
+package com.seta.common.extensions
 
 import com.seta.common.logs.LogX
 import java.util.*

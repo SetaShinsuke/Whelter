@@ -1,5 +1,7 @@
 package com.seta.whelter.db
 
+import java.util.*
+
 /**
  * Created by SETA_WORK on 2018/4/16.
  *      数据库model类

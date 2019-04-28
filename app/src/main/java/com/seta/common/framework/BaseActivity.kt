@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
-import com.seta.swipebackutility.SwipeBackLayout
-import com.seta.swipebackutility.Utils
-import com.seta.swipebackutility.app.SwipeBackActivityBase
-import com.seta.swipebackutility.app.SwipeBackActivityHelper
+//import com.seta.swipebackutility.SwipeBackLayout
+//import com.seta.swipebackutility.Utils
+//import com.seta.swipebackutility.app.SwipeBackActivityBase
+//import com.seta.swipebackutility.app.SwipeBackActivityHelper
 import com.seta.whelter.R
 import org.greenrobot.eventbus.EventBus
 import kotlin.properties.Delegates
@@ -16,15 +16,17 @@ import kotlin.properties.Delegates
 /**
  * Created by Seta.Driver on 2017/7/26.
  */
-open class BaseActivity : AppCompatActivity(), SwipeBackActivityBase {
-    private var mHelper by Delegates.notNull<SwipeBackActivityHelper>()
+open class BaseActivity : AppCompatActivity() {
+        //, SwipeBackActivityBase {
+//    private var mHelper by Delegates.notNull<SwipeBackActivityHelper>()
+
     private var homeAsBackEnabled = true
     var loadingDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mHelper = SwipeBackActivityHelper(this)
-        mHelper.onActivityCreate()
+//        mHelper = SwipeBackActivityHelper(this)
+//        mHelper.onActivityCreate()
         setHomeAsBackEnabled(homeAsBackEnabled)
         loadingDialog = ProgressDialog(this)
                 .apply {
@@ -65,24 +67,24 @@ open class BaseActivity : AppCompatActivity(), SwipeBackActivityBase {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        mHelper.onPostCreate()
+//        mHelper.onPostCreate()
     }
 
-    fun findView(id: Int): View {
-        val v = super.findViewById(id) ?: return mHelper.findViewById(id)
-        return v
-    }
-
-    override fun getSwipeBackLayout(): SwipeBackLayout {
-        return mHelper.swipeBackLayout
-    }
-
-    override fun setSwipeBackEnable(enable: Boolean) {
-        swipeBackLayout.setEnableGesture(enable)
-    }
-
-    override fun scrollToFinishActivity() {
-        Utils.convertActivityToTranslucent(this)
-        swipeBackLayout.scrollToFinishActivity()
-    }
+//    fun findView(id: Int): View {
+//        val v = super.findViewById(id) ?: return mHelper.findViewById(id)
+//        return v
+//    }
+//
+//    override fun getSwipeBackLayout(): SwipeBackLayout {
+//        return mHelper.swipeBackLayout
+//    }
+//
+//    override fun setSwipeBackEnable(enable: Boolean) {
+//        swipeBackLayout.setEnableGesture(enable)
+//    }
+//
+//    override fun scrollToFinishActivity() {
+//        Utils.convertActivityToTranslucent(this)
+//        swipeBackLayout.scrollToFinishActivity()
+//    }
 }
